@@ -14,13 +14,8 @@ func main() {
 	apiClient := api.NewCoinMarketCapClient(nil)
 	r := router.SetupRouter(apiClient)
 
-	allowedOrigins := []string{
-		"http://localhost:3001",                // Development
-		"https://app-latest-kco7.onrender.com", // Production
-	}
-
 	c := cors.New(cors.Options{
-		AllowedOrigins:   allowedOrigins,
+		AllowedOrigins:   []string{"https://app-latest-kco7.onrender.com"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Content-Type", "X-CMC_PRO_API_KEY"},
 		AllowCredentials: true,
