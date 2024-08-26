@@ -19,7 +19,7 @@ func main() {
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Content-Type", "X-CMC_PRO_API_KEY"},
 		AllowCredentials: true,
-		Debug:            true,
+		Debug:            false,
 	})
 
 	// Apply CORS middleware to our router
