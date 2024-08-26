@@ -1,0 +1,37 @@
+package main
+
+import (
+	"log"
+	"net/http"
+
+	"github.com/Labastidaa/go-blckchn/internal/api"
+	"github.com/Labastidaa/go-blckchn/internal/router"
+
+	"github.com/rs/cors"
+)
+
+func main() {
+	apiClient := api.NewCoinMarketCapClient(nil)
+	r := router.SetupRouter(apiClient)
+
+	allowedOrigins := []string{
+		"http://localhost:3001",                // Development
+		"https://app-latest-kco7.onrender.com", // Production
+	}
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   allowedOrigins,
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Content-Type", "X-CMC_PRO_API_KEY"},
+		AllowCredentials: true,
+		Debug:            true,
+	})
+
+	// Apply CORS middleware to our router
+	handler := c.Handler(r)
+
+	log.Println("Server starting on port :8081...")
+	if err := http.ListenAndServe(":8081", handler); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
+}

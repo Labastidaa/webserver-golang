@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  go-blckchn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - COINMARKETCAP_API_KEY=${COINMARKETCAP_API_KEY}
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
