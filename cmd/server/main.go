@@ -16,10 +16,10 @@ func main() {
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"https://app-latest-kco7.onrender.com"},
-		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowedHeaders:   []string{"Accept", "Content-Type", "X-CMC_PRO_API_KEY"},
+		AllowedMethods:   []string{http.MethodGet, http.MethodOptions},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CMC_PRO_API_KEY"},
 		AllowCredentials: true,
-		Debug:            false,
+		Debug:            true,
 	})
 
 	// Apply CORS middleware to our router
