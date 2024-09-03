@@ -15,7 +15,7 @@ func main() {
 	r := router.SetupRouter(apiClient)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"https://app-latest-kco7.onrender.com"},
+		AllowedOrigins:   []string{"https://app-latest-kco7.onrender.com", "https://www.glvz-ds.com"},
 		AllowedMethods:   []string{http.MethodGet, http.MethodOptions},
 		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CMC_PRO_API_KEY"},
 		AllowCredentials: true,
